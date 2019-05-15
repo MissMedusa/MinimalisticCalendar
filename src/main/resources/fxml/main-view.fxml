@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<StackPane xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.MainViewController">
+   <children>
+      <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0">
+         <left>
+            <VBox prefHeight="650.0" prefWidth="234.0" spacing="30.0" style="-fx-background-color: #1666;" BorderPane.alignment="CENTER">
+               <children>
+                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Minimalistic Calendar" textAlignment="CENTER" wrappingWidth="194.4091796875">
+                     <font>
+                        <Font name="Arial Black" size="28.0" />
+                     </font>
+                  </Text>
+                  <TextField fx:id="searchField" promptText="Search..." style="-fx-background-color: #FFFFFF;" />
+                  <Button fx:id="addEventButton" mnemonicParsing="false" onAction="#addEventButtonClicked" prefHeight="0.0" prefWidth="202.0" style="-fx-background-color: #1666;" text="+ Add Event" textFill="WHITE">
+                     <font>
+                        <Font name="Arial Black" size="13.0" />
+                     </font>
+                  </Button>
+               </children>
+               <padding>
+                  <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+               </padding>
+               <BorderPane.margin>
+                  <Insets />
+               </BorderPane.margin>
+            </VBox>
+         </left>
+         <top>
+            <HBox alignment="TOP_RIGHT" prefHeight="50.0" prefWidth="1280.0" spacing="50.0" style="-fx-background-color: #1666;" BorderPane.alignment="TOP_RIGHT">
+               <children>
+                  <ComboBox fx:id="yearComboBox" editable="true" onAction="#onYearChanged" prefHeight="20.0" prefWidth="100.0" promptText="Year" style="-fx-background-color: #1666;" />
+                  <ComboBox fx:id="monthComboBox" editable="true" onAction="#onMonthChanged" prefHeight="20.0" prefWidth="100.0" promptText="Month" style="-fx-background-color: #1666;" />
+                  <Button fx:id="mainViewQuitButton" mnemonicParsing="false" onAction="#quitApp" prefHeight="25.0" prefWidth="53.0" style="-fx-background-color: #1666;" text="Quit" />
+               </children>
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding>
+               <BorderPane.margin>
+                  <Insets />
+               </BorderPane.margin>
+            </HBox>
+         </top>
+         <center>
+            <BorderPane BorderPane.alignment="CENTER">
+               <center>
+                  <GridPane fx:id="monthGridPane" gridLinesVisible="true">
+                    <columnConstraints>
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                        <RowConstraints maxHeight="40.0" minHeight="10.0" prefHeight="10.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #4b7477;">
+                           <children>
+                              <Label alignment="CENTER" layoutX="33.0" layoutY="3.0" text="Monday" textAlignment="CENTER" textFill="WHITE">
+                                 <font>
+                                    <Font name="Arial Black" size="20.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </Pane>
+                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #4b7477;" GridPane.columnIndex="1">
+                           <children>
+                              <Label layoutX="33.0" layoutY="3.0" text="Tuesday" textAlignment="CENTER" textFill="WHITE">
+                                 <font>
+                                    <Font name="Arial Black" size="20.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </Pane>
+                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #4b7477;" GridPane.columnIndex="2">
+                           <children>
+                              <Label layoutX="16.0" layoutY="3.0" text="Wednesday" textFill="WHITE">
+                                 <font>
+                                    <Font name="Arial Black" size="20.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </Pane>
+                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #4b7477;" GridPane.columnIndex="3">
+                           <children>
+                              <Label layoutX="29.0" layoutY="3.0" text="Thursday" textFill="WHITE">
+                                 <font>
+                                    <Font name="Arial Black" size="20.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </Pane>
+                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #4b7477;" GridPane.columnIndex="4">
+                           <children>
+                              <Label layoutX="44.0" layoutY="3.0" text="Friday" textFill="WHITE">
+                                 <font>
+                                    <Font name="Arial Black" size="20.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </Pane>
+                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #4b7477;" GridPane.columnIndex="5">
+                           <children>
+                              <Label layoutX="30.0" layoutY="3.0" text="Saturday" textFill="WHITE">
+                                 <font>
+                                    <Font name="Arial Black" size="20.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </Pane>
+                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #4b7477;" GridPane.columnIndex="6">
+                           <children>
+                              <Label layoutX="37.0" layoutY="3.0" text="Sunday" textFill="WHITE">
+                                 <font>
+                                    <Font name="Arial Black" size="20.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </Pane>
+                        <VBox prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="1" />
+                        <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                        <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+                        <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="4" GridPane.rowIndex="1" />
+                        <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="5" GridPane.rowIndex="1" />
+                        <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="6" GridPane.rowIndex="1" />
+                        <VBox prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="2" />
+                        <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                        <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+                        <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="4" GridPane.rowIndex="2" />
+                        <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="5" GridPane.rowIndex="2" />
+                        <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="6" GridPane.rowIndex="2" />
+                        <VBox prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="3" />
+                        <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                        <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+                        <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+                        <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="4" GridPane.rowIndex="3" />
+                        <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="5" GridPane.rowIndex="3" />
+                        <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="6" GridPane.rowIndex="3" />
+                        <VBox prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="4" />
+                        <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                        <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="2" GridPane.rowIndex="4" />
+                        <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="3" GridPane.rowIndex="4" />
+                        <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="4" GridPane.rowIndex="4" />
+                        <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="5" GridPane.rowIndex="4" />
+                        <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="6" GridPane.rowIndex="4" />
+                        <VBox prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="5" />
+                        <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                        <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="2" GridPane.rowIndex="5" />
+                        <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="3" GridPane.rowIndex="5" />
+                        <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="4" GridPane.rowIndex="5" />
+                        <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="5" GridPane.rowIndex="5" />
+                        <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="6" GridPane.rowIndex="5" />
+                        <VBox prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="6" />
+                        <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                        <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="2" GridPane.rowIndex="6" />
+                        <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="3" GridPane.rowIndex="6" />
+                        <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="4" GridPane.rowIndex="6" />
+                        <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="5" GridPane.rowIndex="6" />
+                        <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="6" GridPane.rowIndex="6" />
+                     </children>
+                  </GridPane>
+               </center>
+            </BorderPane>
+         </center>
+      </BorderPane>
+      <Pane fx:id="shadowPane" onMouseClicked="#onShadowPaneClicked" opacity="0.52" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #000000;" visible="false" />
+      <AnchorPane fx:id="addEventForm" pickOnBounds="false" prefHeight="464.0" prefWidth="805.0" visible="false" StackPane.alignment="CENTER">
+         <children>
+          <AnchorPane layoutX="516.0" layoutY="139.0" minHeight="0.0" minWidth="0.0" pickOnBounds="false" prefHeight="500.0" prefWidth="300.0" style="-fx-background-color: #a0c2c2;">
+               <children>
+                  <VBox alignment="CENTER" layoutX="50.0" prefHeight="500.0" prefWidth="200.0" spacing="20.0">
+                     <children>
+                        <Label text="Add Event" textAlignment="CENTER" textFill="#ceebeb">
+                           <font>
+                              <Font name="System Bold" size="18.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="nameTextField" prefHeight="25.0" prefWidth="150.0" promptText="Name" />
+                        <DatePicker fx:id="datePicker" prefHeight="25.0" prefWidth="200.0" promptText="Date" />
+                        <TitledPane animated="false" prefHeight="130.0" prefWidth="196.0" text="Repeat" textFill="#8a8a8a">
+                           <content>
+                              <VBox prefHeight="110.0" prefWidth="200.0" spacing="10.0">
+                                 <children>
+                                    <CheckBox fx:id="annuallyCheckBox" mnemonicParsing="false" prefHeight="16.0" prefWidth="112.0" text="Annually" textFill="#8a8a8a" />
+                                    <CheckBox fx:id="monthlyCheckBox" mnemonicParsing="false" prefHeight="16.0" prefWidth="112.0" text="Monthly" textFill="#8a8a8a" />
+                                    <CheckBox fx:id="weeklyCheckBox" mnemonicParsing="false" prefHeight="16.0" prefWidth="112.0" text="Weekly" textFill="#8a8a8a" />
+                                    <CheckBox fx:id="dailyCheckBox" mnemonicParsing="false" prefHeight="16.0" prefWidth="112.0" text="Daily" textFill="#8a8a8a" />
+                                 </children>
+                              </VBox>
+                           </content>
+                        </TitledPane>
+                        <TextArea fx:id="descriptionTextArea" prefHeight="66.0" prefWidth="200.0" promptText="Description" />
+                        <Label fx:id="errorMessages" textFill="#8d0a0a">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Label>
+                        <HBox alignment="CENTER" spacing="30.0">
+                           <children>
+                              <Button fx:id="saveEventButton" mnemonicParsing="false" onAction="#onSaveClicked" style="-fx-background-color: #1666;" text="Save" />
+                              <Button fx:id="cancelButton" mnemonicParsing="false" onAction="#onCancelButtonPressed" style="-fx-background-color: #1666;" text="Cancel" />
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+               </children>
+            </AnchorPane>
+         </children>
+      </AnchorPane>
+      <BorderPane fx:id="eventsDetailPane" focusTraversable="true" mouseTransparent="true" pickOnBounds="false" prefHeight="200.0" prefWidth="200.0" visible="false">
+         <center>
+            <BorderPane maxHeight="600.0" maxWidth="400.0" prefHeight="500.0" prefWidth="500.0" style="-fx-background-color: #a0c2c2;" BorderPane.alignment="CENTER">
+               <center>
+                  <ListView fx:id="eventsList" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+               </center>
+               <padding>
+                  <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+               </padding>
+            </BorderPane>
+         </center>
+      </BorderPane>
+   </children>
+   <effect>
+      <DropShadow />
+   </effect>
+</StackPane>
