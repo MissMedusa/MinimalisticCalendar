@@ -26,7 +26,7 @@ public class UserDataLoader {
     /** Users database. */
     private final String USERS_FILE = "userData/users.json";
 
-    /** UserSerializer object */
+    /** UserSerializer object. */
     private UserSerializer userSerializer = new UserSerializer();
 
     /**
@@ -47,6 +47,7 @@ public class UserDataLoader {
 
     /**
      * Reads all users from the database.
+     * @return user.
      */
     public User readUser() {
             logger.info("Initializing user.");

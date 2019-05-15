@@ -62,8 +62,8 @@ public class UserProfilesController {
     }
 
     /**
-     * Adds event to Calendar
-     * @param event the event
+     * Adds event to Calendar.
+     * @param event the event.
      */
     public void addEventToCalendar(Event event){
         logger.info("Adding " + event.getName());
@@ -91,9 +91,9 @@ public class UserProfilesController {
 
     /**
      * Matches the username and the password.
-     * @param username
-     * @param encryptedPassword
-     * @return
+     * @param username the username.
+     * @param encryptedPassword the encryptedPassword.
+     * @return boolean.
      */
     public boolean userMatches(String username, String encryptedPassword) {
         logger.info("User matches: " + getUser());

@@ -201,7 +201,7 @@ public class MainViewController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         logger.info("Initializing Month view.");
-        this.currentViewedDate = LocalDate.of(2016, 4, 20);
+        this.currentViewedDate = LocalDate.now();
         this.calendarController = new CalendarController();
 
         initYearCombobox();

@@ -29,7 +29,6 @@ public class Calendar {
         this.id = UUID.randomUUID().toString();
         this.name = name;
     }
-    //ezek miért itt vannak?
     /**
      * Adds event to calendar.
      * @param event event to add.

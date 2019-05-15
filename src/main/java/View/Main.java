@@ -25,7 +25,7 @@ public class Main extends Application {
     /** Logger. */
     public static final Logger logger = LoggerFactory.getLogger(Main.class);
 
-    /** UserDataLoader object */
+    /** UserDataLoader object. */
     private UserDataLoader loader = new UserDataLoader();
 
     /**
