@@ -41,8 +41,7 @@ public class MainViewController implements Initializable {
 
     private final DateTimeFormatter monthFormatter = DateTimeFormatter.ofPattern("MMMM", Locale.ENGLISH);
     private final DateTimeFormatter yearFormatter = DateTimeFormatter.ofPattern("yyyy", Locale.ENGLISH);
-    @FXML
-    private TextField searchField;
+
     @FXML
     private Button addEventButton;
     @FXML
@@ -104,23 +103,17 @@ public class MainViewController implements Initializable {
 
     @FXML
     private void onShadowPaneClicked(MouseEvent event) {
-        this.logger.info("Shadow pane clicked, cancelling add event form.");
+        logger.info("Shadow pane clicked, cancelling add event form.");
         resetAddEventForm();
         eventsDetailPane.setVisible(false);
     }
 
     @FXML
     private void onCancelButtonPressed(ActionEvent event) {
-        this.logger.info("Cancel button pressed, cancelling add event form.");
+        logger.info("Cancel button pressed, cancelling add event form.");
         resetAddEventForm();
     }
-
-    @FXML
-    private void onDayClick(){
-        //if day has no events do nothing
-        //otherwise go to DAY VIEW :D :D YAAAY
-
-    }
+    
 
     @FXML
     private void onSaveClicked() {
@@ -165,36 +158,36 @@ public class MainViewController implements Initializable {
 
     @FXML
     private void onMonthChanged(ActionEvent event) {
-        this.logger.info("Month changed!");
+        logger.info("Month changed!");
         String monthName = monthComboBox.getValue().toString();
         try {
              Month month = Month.from(monthFormatter.parse(monthName));
 
-            this.logger.info("Got the month: " + month);
+            logger.info("Got the month: " + month);
             this.currentViewedDate = createNewDate(month);
-            this.logger.info("created the new Date: " + this.currentViewedDate);
+            logger.info("created the new Date: " + this.currentViewedDate);
             this.initView(this.currentViewedDate);
-            this.logger.info("on month changed inited succesfully");
+            logger.info("on month changed inited succesfully");
 
 
         } catch (Exception e) {
-            this.logger.error("Invalid month: " + monthComboBox.getValue() + " encountered! " + e.getMessage());
+            logger.error("Invalid month: " + monthComboBox.getValue() + " encountered! " + e.getMessage());
         }
     }
 
     @FXML
     private void onYearChanged(ActionEvent event) {
-        this.logger.info("Year changed!");
+        logger.info("Year changed!");
         String monthName = yearComboBox.getValue().toString();
         try {
             Year year = Year.from(yearFormatter.parse(monthName));
-            this.logger.info("Got the month: " + year);
+            logger.info("Got the month: " + year);
 
             this.currentViewedDate = createNewDate(year);
             this.initView(this.currentViewedDate);
 
         } catch (Exception e) {
-            this.logger.error("Invalid year encountered! " + e.getMessage());
+            logger.error("Invalid year encountered! " + e.getMessage());
         }
     }
 
@@ -210,17 +203,17 @@ public class MainViewController implements Initializable {
     }
 
     public void initEvents() {
-        this.logger.debug("Initing events");
+        logger.debug("Initing events");
         YearMonth currentYearMonth = YearMonth.from(this.currentViewedDate);
         List<Event> eventsThisMonth = calendarController.getEventsThisMonth(currentYearMonth);
 
         eventsThisMonth.forEach(event -> renderEvent(event));
-        this.logger.debug("Events this month " + eventsThisMonth);
+        logger.debug("Events this month " + eventsThisMonth);
     }
 
     private void renderEvent(Event event) {
         LocalDate date = event.getDate();
-        this.logger.debug("Rendering event: " + event.getName());
+        logger.debug("Rendering event: " + event.getName());
 
         //todo if eventsToday are > 3 show "<COUNT> EVENTS"
         VBox cell = (VBox) monthGridPane.getChildren().get(firstDayIndex + date.getDayOfMonth());
@@ -228,7 +221,7 @@ public class MainViewController implements Initializable {
             showDetailView();
             mouseEvent.consume();
         });
-        this.logger.trace("Found event cell: " + cell);
+        logger.trace("Found event cell: " + cell);
         cell.getChildren().add(new Label("EVENT: " + event.getName()));
     }
 
@@ -243,7 +236,7 @@ public class MainViewController implements Initializable {
             LocalDate newDate = LocalDate.of(year.getValue(), this.currentViewedDate.getMonthValue(), 1);
             return newDate;
         } catch (Exception e) {
-            this.logger.error("Invalid month somehow, returning with dayOfmonth 1: " + e.getMessage());
+            logger.error("Invalid month somehow, returning with dayOfmonth 1: " + e.getMessage());
             return this.currentViewedDate;
         }
     }
@@ -253,7 +246,7 @@ public class MainViewController implements Initializable {
             LocalDate newDate = LocalDate.of(this.currentViewedDate.getYear(), month, 1);
             return newDate;
         } catch (Exception e) {
-            this.logger.error("Invalid month somehow, returning with dayOfmonth 1: " + e.getMessage());
+            logger.error("Invalid month somehow, returning with dayOfmonth 1: " + e.getMessage());
             return this.currentViewedDate;
         }
     }

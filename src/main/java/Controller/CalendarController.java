@@ -91,15 +91,12 @@ public class CalendarController {
         }
 
         //todo take note on febr 29:
-        if (repetitions.contains(Repetition.ANNUALLY) && event.getDate().getMonth() == yearMonth.getMonth() &&
-                (event.getDate().getDayOfMonth() <= getLengthOfMonth(yearMonth))) {
-            return true;
-        }
-        return false;
+        return repetitions.contains(Repetition.ANNUALLY) && event.getDate().getMonth() == yearMonth.getMonth() &&
+                (event.getDate().getDayOfMonth() <= getLengthOfMonth(yearMonth));
     }
 
     /**
-     * Returns occurrences of the event that month.
+     * Returns occurrences of the event that month. An occurence is a date that the event occurs in, but does not include the original date itself.
      * @param event the event.
      * @param yearMonth the month.
      * @return list of events.
@@ -112,6 +109,13 @@ public class CalendarController {
         if (repetitions.contains(Repetition.WEEKLY)) {
             return getWeeklyOccurrences(event, yearMonth);
         }
+        if (repetitions.contains(Repetition.MONTHLY)) {
+            return getMonthlyOccurences(event, yearMonth);
+        }
+        if (repetitions.contains(Repetition.ANNUALLY)) {
+            return getAnnualOccurences(event, yearMonth);
+        }
+
         return new ArrayList<>();
     }
 
@@ -119,7 +123,7 @@ public class CalendarController {
      * Returns the daily occurrences of the event.
      * @param event the event.
      * @param yearMonth the month.
-     * @return dailyOccurrences.
+     * @return dailyOccurrences the occurences in @{Code yearMonth} month.
      */
     public List<Event> getDailyOccurrences(Event event, YearMonth yearMonth) {
         List<Event> dailyOccurrences = new ArrayList<>();
@@ -133,6 +137,39 @@ public class CalendarController {
 
         logger.info("Returning daily occurrences for event " + event + " length: " + dailyOccurrences.size());
         return dailyOccurrences;
+    }
+
+    /**
+     * Returns the monthly occurrences of the event in the month. Will return the single event if the month is not the same as the original events month.
+     * @param event the event.
+     * @param yearMonth the month.
+     * @return weeklyOccurrences the occurences in @{Code yearMonth} month.
+     */
+    public List<Event> getMonthlyOccurences(Event event, YearMonth yearMonth) {
+        List<Event> monthlyOccurences = new ArrayList<>();
+        LocalDate eventDate = event.getDate();
+
+        if (!(YearMonth.from(eventDate).equals(yearMonth)) && getLengthOfMonth(yearMonth) >= eventDate.getDayOfMonth()) {
+            monthlyOccurences.add(createEventOccurrenceWithDate( eventDate.getDayOfMonth(), event));
+        }
+        return monthlyOccurences;
+    }
+
+    /**
+     * Returns the yearly occurrences of the event in the month.
+     * @param event the event.
+     * @param yearMonth the month.
+     * @return yearlyOccurence the occurences in @{Code yearMonth} month.
+     */
+    public List<Event> getAnnualOccurences(Event event, YearMonth yearMonth) {
+        List<Event> yearlyOccurences = new ArrayList<>();
+        LocalDate eventDate = event.getDate();
+
+        logger.info("get annual occurences: " + event + " - " + yearMonth);
+        if (!(YearMonth.from(eventDate).equals(yearMonth)) && (yearMonth.getMonth() == eventDate.getMonth())) {
+            yearlyOccurences.add(createEventOccurrenceWithDate( eventDate.getDayOfMonth(), event));
+        }
+        return yearlyOccurences;
     }
 
     /**
@@ -197,19 +234,4 @@ public class CalendarController {
         return event;
     }
 
-    /**
-     * Filters events by name.
-     * @param events the events list.
-     * @param search the name.
-     */
-    private void filterEventsByName(List<Event> events, String search){
-        //TODO
-    }
-
-    /**
-     * Gets the events that day.
-     */
-    private void getEventsByDay(){
-        //TODO
-    }
 }

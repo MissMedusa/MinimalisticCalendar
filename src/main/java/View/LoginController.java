@@ -1,5 +1,4 @@
 //CHECKSTYLE:OFF
-
 package View;
 
 import Controller.UserDataLoader;
@@ -64,7 +63,7 @@ public class LoginController {
                     stage.setScene(scene);
                     stage.show();
                 } catch (IOException e){
-                    logger.error("Exception occured while loading FXML: " + "fxml/main-view.fxml");
+                    logger.error("Exception occurred while loading FXML: " + "fxml/main-view.fxml");
 
                 }
             } else {

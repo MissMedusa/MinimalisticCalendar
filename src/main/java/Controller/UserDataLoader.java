@@ -1,7 +1,6 @@
 package Controller;
 
 import Model.User;
-import Model.UserEntity;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
 import org.slf4j.Logger;
@@ -11,9 +10,6 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * Class for managing the user data.
@@ -52,7 +48,7 @@ public class UserDataLoader {
     public User readUser() {
             logger.info("Initializing user.");
             File file = new File(USERS_FILE);
-            String usersJson = new String();
+            String usersJson = "";
             //temporary user in case no other exists
             User user = new User("admin", "admin");
             if(file.exists()){

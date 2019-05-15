@@ -42,9 +42,7 @@ public class Calendar {
      * @param event event to remove.
      */
     public void removeEvent(Event event) {
-        if (this.events.contains(event)) {
-            this.events.remove(event);
-        }
+        this.events.remove(event);
     }
 
     /**
